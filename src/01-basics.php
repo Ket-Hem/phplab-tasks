@@ -10,9 +10,21 @@
  * @return string
  * @throws InvalidArgumentException
  */
-function getMinuteQuarter(int $minute)
+function getMinuteQuarter(int $minute=0)
 {
+    if ($minute >=45 && $minute <= 59 || $minute == 0) {
+        echo "fourth";
+    }elseif ($minute >= 30 && $minute < 45){
+        echo "third";
+    }elseif ($minute >= 15 && $minute < 30){
+        echo "second";
+    }elseif($minute > 0 && $minute < 15){
+        echo "first";
+    }else{
+        throw new InvalidArgumentException("The number: {$minute} - is out of minutes limit");
+    }
 }
+
 
 /**
  * The $year variable contains a year (i.e. 1995 or 2020 etc).
