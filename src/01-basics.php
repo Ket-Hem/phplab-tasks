@@ -13,17 +13,19 @@
 function getMinuteQuarter(int $minute=0)
 {
     if ($minute >=45 && $minute <= 59 || $minute == 0) {
-        echo "fourth";
+        $answer = "fourth";
     }elseif ($minute >= 30 && $minute < 45){
-        echo "third";
+        $answer = "third";
     }elseif ($minute >= 15 && $minute < 30){
-        echo "second";
+        $answer = "second";
     }elseif($minute > 0 && $minute < 15){
-        echo "first";
+        $answer = "first";
     }else{
         throw new InvalidArgumentException("The number: {$minute} - is out of minutes limit");
     }
+    return("The second <b>$minute</b> belong to <b>$answer</b> quarter.");
 }
+echo getMinuteQuarter(17);
 
 
 /**
@@ -39,6 +41,13 @@ function getMinuteQuarter(int $minute=0)
  */
 function isLeapYear(int $year)
 {
+    $feb = cal_days_in_month(CAL_GREGORIAN, 2, $year);
+
+    if ($feb == 29) {
+        return TRUE;
+    } else {
+        throw new InvalidArgumentException("$year - is not leap year");
+    }
 }
 
 /**
@@ -54,4 +63,6 @@ function isLeapYear(int $year)
  */
 function isSumEqual(string $input)
 {
+    
+
 }
