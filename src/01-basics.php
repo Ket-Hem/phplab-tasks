@@ -10,22 +10,22 @@
  * @return string
  * @throws InvalidArgumentException
  */
-function getMinuteQuarter(int $minute=0)
+function getMinuteQuarter(int $minute)
 {
-    if ($minute >=45 && $minute <= 59 || $minute == 0) {
-        $answer = "fourth";
-    }elseif ($minute >= 30 && $minute < 45){
-        $answer = "third";
-    }elseif ($minute >= 15 && $minute < 30){
-        $answer = "second";
-    }elseif($minute > 0 && $minute < 15){
+    if ($minute < 0 || $minute >= 60) {
+        throw new InvalidArgumentException("The number: $minute - doesn\`t fit in minute range. ");
+    } elseif ($minute>= 0 && $minute < 15) {
         $answer = "first";
-    }else{
-        throw new InvalidArgumentException("The number: {$minute} - is out of minutes limit");
+    } elseif ($minute >= 15 && $minute < 30) {
+        $answer = "second";
+    } elseif ($minute >= 30 && $minute < 45) {
+        $answer = "third";
+    } else {
+        $answer = "fourth";
     }
-    return("The second <b>$minute</b> belong to <b>$answer</b> quarter.");
+    return $answer;
 }
-echo getMinuteQuarter(17);
+
 
 
 /**
@@ -41,14 +41,16 @@ echo getMinuteQuarter(17);
  */
 function isLeapYear(int $year)
 {
-    $feb = cal_days_in_month(CAL_GREGORIAN, 2, $year);
-
-    if ($feb == 29) {
-        return TRUE;
-    } else {
-        throw new InvalidArgumentException("$year - is not leap year");
+    if($year <= 1900){
+        throw new InvalidArgumentException("The year $year is lower then 1900 and this why it does not full fill minimal requirement. ");
+    }elseif (cal_days_in_month(CAL_GREGORIAN, 2, $year) == 29){
+        $answer = TRUE;
+    }else{
+        $answer = FALSE;
     }
+    return $answer;
 }
+
 
 /**
  * The $input variable contains a string of six digits (like '123456' or '385934').
@@ -63,6 +65,12 @@ function isLeapYear(int $year)
  */
 function isSumEqual(string $input)
 {
-    
-
+    if (strlen($input) != 6) {
+        throw new InvalidArgumentException("Number $input doesn\`t have six character");
+    } elseif(($input[0]+$input[1]+$input[2])==($input[3]+$input[4]+$input[5])) {
+        $answer = TRUE;
+    } else {
+        $answer = FALSE;
+    }
+    return $answer;
 }
