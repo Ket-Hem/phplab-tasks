@@ -26,8 +26,6 @@ function getMinuteQuarter(int $minute)
     return $answer;
 }
 
-
-
 /**
  * The $year variable contains a year (i.e. 1995 or 2020 etc).
  * Return true if the year is Leap or false otherwise.
@@ -41,14 +39,11 @@ function getMinuteQuarter(int $minute)
  */
 function isLeapYear(int $year)
 {
-    if($year <= 1900){
+    if ($year <= 1900) {
         throw new InvalidArgumentException("The year $year is lower then 1900 and this why it does not full fill minimal requirement. ");
-    }elseif (cal_days_in_month(CAL_GREGORIAN, 2, $year) == 29){
-        $answer = TRUE;
-    }else{
-        $answer = FALSE;
+    } else {
+        return (cal_days_in_month(CAL_GREGORIAN, 2, $year) == 29) ?: false;
     }
-    return $answer;
 }
 
 
@@ -68,9 +63,8 @@ function isSumEqual(string $input)
     if (strlen($input) != 6) {
         throw new InvalidArgumentException("Number $input doesn\`t have six character");
     } elseif(($input[0]+$input[1]+$input[2])==($input[3]+$input[4]+$input[5])) {
-        $answer = TRUE;
+        return true;
     } else {
-        $answer = FALSE;
+        return false;
     }
-    return $answer;
 }
