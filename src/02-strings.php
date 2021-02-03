@@ -9,6 +9,7 @@
  */
 function snakeCaseToCamelCase(string $input)
 {
+    return lcfirst(str_replace("_","", ucwords($input, "_")));
 }
 
 /**
@@ -39,4 +40,9 @@ function mirrorMultibyteString(string $input)
  */
 function getBrandName(string $noun)
 {
+    if ($noun[0] == $noun[strlen($noun)-1]) {
+        return ucfirst($noun.substr($noun,1));
+    }else{
+        return "The ".ucfirst($noun);
+    }
 }
