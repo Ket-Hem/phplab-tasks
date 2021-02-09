@@ -8,7 +8,7 @@
  * @param  array  $input
  * @return array
  */
-function repeatArrayValues(array $input = [4])
+function repeatArrayValues(array $input)
 {
     $output = [];
     foreach ($input as $value){
