@@ -9,7 +9,9 @@
  */
 function snakeCaseToCamelCase(string $input)
 {
-    return lcfirst(str_replace("_","", ucwords($input, "_")));
+    $upEachWord = ucwords($input, "_");
+    $lwDashDel = str_replace("_","", $upEachWord);
+    return lcfirst ($lwDashDel);
 }
 
 /**
@@ -51,7 +53,6 @@ function getBrandName(string $noun)
 {
     if ($noun[0] == $noun[strlen($noun)-1]) {
         return ucfirst($noun.substr($noun,1));
-    }else{
-        return "The ".ucfirst($noun);
     }
+    return "The ".ucfirst($noun);
 }
