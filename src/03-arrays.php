@@ -11,8 +11,9 @@
 function repeatArrayValues(array $input)
 {
     $output = [];
-    foreach ($input as $value){
-        $output = array_merge($output, array_fill(0, $value, $value));
+    foreach ($input as $value) {
+        $valRep = array_fill(0, $value, $value);
+        $output = array_merge($output, $valRep);
     }
     return $output;
 }
@@ -66,6 +67,7 @@ function getUniqueValue(array $input)
 
 function groupByTag(array $input)
 {
+    array_multisort($input);
     $output = [];
     foreach ($input as $value){
         foreach ($value['tags'] as $subValue) {
