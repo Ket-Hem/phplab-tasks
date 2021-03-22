@@ -9,8 +9,7 @@
             "src/web/functions.php"
         ],
         "psr-4": {
-            "src\\": "src/"
-        }
+             }
     },
     "require": {
         "php": "^7.3",

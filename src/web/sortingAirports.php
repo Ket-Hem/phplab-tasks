@@ -93,14 +93,14 @@ $airports = require './airports.php';
                i.e. if you have filter_by_first_letter set you can additionally use filter_by_state
         -->
         <?php foreach ($airports as $airport): ?>
-        <tr>
-            <td><?= $airport['name'] ?></td>
-            <td><?= $airport['code'] ?></td>
-            <td><a href="#"><?= $airport['state'] ?></a></td>
-            <td><?= $airport['city'] ?></td>
-            <td><?= $airport['address'] ?></td>
-            <td><?= $airport['timezone'] ?></td>
-        </tr>
+            <tr>
+                <td><?= $airport['name'] ?></td>
+                <td><?= $airport['code'] ?></td>
+                <td><a href="#"><?= $airport['state'] ?></a></td>
+                <td><?= $airport['city'] ?></td>
+                <td><?= $airport['address'] ?></td>
+                <td><?= $airport['timezone'] ?></td>
+            </tr>
         <?php endforeach; ?>
         </tbody>
     </table>

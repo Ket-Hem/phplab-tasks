@@ -14,17 +14,18 @@ function getMinuteQuarter(int $minute)
 {
     if ($minute < 0 || $minute >= 60) {
         throw new InvalidArgumentException("The number: $minute - doesn\`t fit in minute range. ");
-    } elseif ($minute = 0 && $minute <= 15) {
-        $answer = "first";
-    } elseif ($minute > 15 && $minute <= 30) {
-        $answer = "second";
-    } elseif ($minute > 30 && $minute < 45) {
-        $answer = "third";
+    } elseif ($minute <= 15) {
+        $answer = 'first';
+    } elseif ($minute <= 30) {
+        $answer = 'second';
+    } elseif ($minute <= 45) {
+        $answer = 'third';
     } else {
-        $answer = "fourth";
+        $answer = 'fourth';
     }
     return $answer;
 }
+var_dump(getMinuteQuarter(30));
 
 /**
  * The $year variable contains a year (i.e. 1995 or 2020 etc).
@@ -61,10 +62,13 @@ function isLeapYear(int $year)
 function isSumEqual(string $input)
 {
     if (strlen($input) != 6) {
-        throw new InvalidArgumentException("Number $input doesn\`t have six character");
-    } elseif(($input[0]+$input[1]+$input[2])==($input[3]+$input[4]+$input[5])) {
-        return true;
-    } else {
-        return false;
+        throw new InvalidArgumentException("Number $input doesn`t have six character");
     }
+    $arrInput = str_split($input);
+    $halfArrInput = count($arrInput)/2;
+    $chunkArrInput = array_chunk($arrInput, $halfArrInput);
+    $zeroHalf = array_count_values($chunkArrInput[0]);
+    $firstHalf = array_count_values($chunkArrInput[1]);
+    return ($zeroHalf == $firstHalf) ?: false;
 }
+

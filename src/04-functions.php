@@ -35,8 +35,9 @@ function sayHelloArgument($arg)
  */
 function sayHelloArgumentWrapper($arg)
 {
-    // put your code here
-
+    if(!is_int($arg) && !is_bool($arg) && !is_string($arg)) {
+        throw new InvalidArgumentException("$arg is " . gettype($arg));
+    }
     return sayHelloArgument($arg);
 }
 
